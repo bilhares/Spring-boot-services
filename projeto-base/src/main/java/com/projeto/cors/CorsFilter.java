@@ -2,6 +2,8 @@ package com.projeto.cors;
 
 import java.io.IOException;
 
+import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -18,7 +20,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class CorsFilter implements Filter {
-	private String originPermitida = "http://localhost:8000"; // TODO: Configurar para diferentes ambientes
+
+	private String originPermitida = "http://localhost:8089"; // TODO: Configurar para diferentes ambientes
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
@@ -30,7 +33,7 @@ public class CorsFilter implements Filter {
 		response.setHeader("Access-Control-Allow-Origin", originPermitida);
 		response.setHeader("Access-Control-Allow-Credentials", "true");
 
-		if ("OPTIONS".equals(request.getMethod()) && originPermitida.equals(request.getHeader("Origin"))) {
+		if ("OPTIONS".equals(request.getMethod())) {
 			response.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT, OPTIONS");
 			response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Accept");
 			response.setHeader("Access-Control-Max-Age", "3600");

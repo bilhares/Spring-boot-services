@@ -22,7 +22,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.inMemory().withClient("angular").secret("123").scopes("read", "write").authorizedGrantTypes("password")
-				.accessTokenValiditySeconds(1800);// 1800 = 30minutos
+				//.accessTokenValiditySeconds(1800);// 1800s = 30minutos
+				.accessTokenValiditySeconds(300);// 300s = 5minutos
 	}
 
 	@Override
