@@ -23,15 +23,11 @@ public class EditalController {
 		// buscar processos
 		List<ProcDiarioOficial> dados = procRepository.findProcessosNaoGerados(tipo);
 
-		for (ProcDiarioOficial dado : dados) {
-			System.out.println(dado.getNumeroProcesso());
-		}
-
 		// gerar edital
-		// criar edital/portaria
 		// gerar docx
 		// gerar pdf
 		// salvar documento na base
+		// criar edital/portaria
 
 		// atualizar edital com os ids dos docs
 		// atuallizar processos
