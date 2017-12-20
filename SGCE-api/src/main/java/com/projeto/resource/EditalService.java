@@ -30,7 +30,7 @@ public class EditalService {
 
 	@Autowired
 	ProcDiarioOficialRepository procRepository;
-	
+
 	@Autowired
 	EditalController controller;
 
@@ -62,9 +62,7 @@ public class EditalService {
 	@RequestMapping(value = "/gerar-edital/{tipo}/{num}", method = RequestMethod.POST)
 	@PreAuthorize("hasAuthority('ROLE_CADASTRAR') and #oauth2.hasScope('write')")
 	void insertFakeData(@PathVariable("tipo") int tipo, @PathVariable("num") int numEdital) {
-		//List<ProcDiarioOficial> dados = procRepository.findProcessosNaoGerados(tipo);
 		controller.gerarEdital(tipo, numEdital);
-		
 	}
 
 }

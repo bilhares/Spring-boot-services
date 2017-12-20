@@ -12,11 +12,9 @@ import com.projeto.model.ProcDiarioOficial;
 
 public interface ProcDiarioOficialRepository extends JpaRepository<ProcDiarioOficial, Long> {
 
-	@Query("Select p from ProcDiarioOficial p where p.tipoProcedimento = :filtro")
+	@Query("Select p from ProcDiarioOficial p where p.tipoProcedimento = :filtro and gerado = 0")
 	public Page<ProcDiarioOficial> findByTipo(Pageable page, @Param("filtro") int filtro);
-	
+
 	@Query(value = "SELECT TOP 60 * FROM proc_diario_oficial WHERE edital_gerado = 0 and tipo_procedimento = ?1", nativeQuery = true)
 	public List<ProcDiarioOficial> findProcessosNaoGerados(int tipo);
-	
-
 }

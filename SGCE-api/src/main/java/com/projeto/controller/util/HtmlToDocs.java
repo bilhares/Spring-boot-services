@@ -13,6 +13,8 @@ import org.docx4j.openpackaging.exceptions.InvalidFormatException;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import org.docx4j.openpackaging.parts.WordprocessingML.NumberingDefinitionsPart;
 
+import com.projeto.model.ProcDiarioOficial;
+
 
 public class HtmlToDocs {
 
@@ -22,7 +24,7 @@ public class HtmlToDocs {
  // File file = new File("C:\\TestWordToHtml\\html\\Test.html");
 		
  String inputfilepath = "C:\\temp\\html\\Teste2.html";
-
+ProcDiarioOficial processo = new ProcDiarioOficial();
  
  StringBuilder html = new StringBuilder();
 	html.append("<html>");
@@ -34,13 +36,65 @@ public class HtmlToDocs {
 
 	html.append("</style>");
 	html.append("</head><body>");
-
-	html.append("<div><p style=\"text-align: center;\">PORTARIA DETRAN-MS \"T\" N.233, DE 14 de Novembro de 2017</p><p style=\"text-align: right;\">\"Aplica a penalidade aos "
-			+ "condutores abaixo<br/> mencionados e da outras providencias\".</p><p style=\"text-indent:40px\">O Diretor-Presidente do departamento estadual de transito de Mato Grosso do Sul � DETRAN-MS, "
-			+ "no uso de suas atribuicoes legais,<br/> e CONSIDERANDO o que consta nos referidos autos deste departamento estadual de transito;<br/> RESOLVE:<br/> Art. 1 - Aplicar a penalidade"
-			+ " que menciona aos condutores abaixo mencionados:</p></div><br/>"
-			+ "<table ><tr><th colspan= \"2\">Condutor:</th><td colspan= \"2\">TESTE 0</td></tr><tr><th colspan= \"1\">Cnh:</th><td colspan= \"1\">115724180 MS</td><th colspan= \"1\">Regitro pgu:</th><td colspan=\"1\">04352889020</td></tr><tr><th>Penalidade:</th><td colspan= \"4\">TIPO DO PROCESSO TIPO DO PROCESSO TIPO DO PROCESSO</td></tr><tr><th>Fundamento legal<br/> (artigo do CTB):</th><td>EEVVMAAN22</td><th>Processo:</th><td>006155/20150</td></tr><tr><th>Prazo:</th><td>02 MESES</td><th>Pontuacao:</th><td>007</td></tr></table>"
-			+ "<br/><p> Art. 2 - Esta portaria entrara em vigor na data da sua publicacao. Campo Grande (MS) 14 de Novembro de 2017 ROBERTO HASHIOKA SOLER Diretor-Presidente</p>");
+	
+	//cabeçalho
+	html.append("<div >");
+	
+	html.append("<p style=\"text-align: center;\">PORTARIA DETRAN-MS \"T\" N."+processo.getNumeroProcesso()+", DE "+DataUtil.dataAtualExtenso()+"</p>");
+	html.append("<p style=\"text-align: right;\">Aplica a penalidade aos condutores abaixo<br/> mencionados e da outras providencias.</p>");
+	html.append("<p style=\"text-indent:40px\">O Diretor-Presidente do departamento estadual de transito de Mato Grosso do Sul DETRAN-MS,no uso de suas atribuicoes\r\n" + 
+			"      legais,\r\n" + 
+			"      <br/> e CONSIDERANDO o que consta nos referidos autos deste departamento estadual de transito;\r\n" + 
+			"      <br/> RESOLVE:\r\n" + 
+			"      <br/> Art. 1 - Aplicar a penalidade que menciona aos condutores abaixo mencionados:</p>");
+	
+	
+	html.append("</div>");
+	html.append("<br/>");
+	
+	//tabela
+	html.append("<table align=\"center\">");
+	//linha1
+	html.append("<tr>\r\n" + 
+			"      <th colspan=\"2\">Condutor:</th>\r\n" + 
+			"      <td colspan=\"2\">"+ processo.getCondutor() +"</td>\r\n" + 
+			"    </tr>");
+	//lina2
+	
+	html.append("<tr>\r\n" + 
+			"      <th colspan=\"1\">Cnh:</th>\r\n" + 
+			"      <td colspan=\"1\">"+processo.getCnh()+"</td>\r\n" + 
+			"      <th colspan=\"1\">Regitro pgu:</th>\r\n" + 
+			"      <td colspan=\"1\">}"+processo.getRegistroPgu()+"</td>\r\n" + 
+			"    </tr>");
+	//linha3
+	html.append("<tr>\r\n" + 
+			"      <th>Penalidade:</th>\r\n" + 
+			"      <td colspan=\"4\">"+processo.getTipoProcesso()+"</td>\r\n" + 
+			"    </tr>");
+	//linha4
+	html.append("<tr>\r\n" + 
+			"      <th>Fundamento legal\r\n" + 
+			"        <br/> (artigo do CTB):</th>\r\n" + 
+			"      <td>"+processo.getFundamentoLegal()+"</td>\r\n" + 
+			"      <th>Processo:</th>\r\n" + 
+			"      <td>"+processo.getNumeroProcesso()+"</td>\r\n" + 
+			"    </tr>");
+	//linha5
+	html.append("<tr>\r\n" + 
+			"      <th>Prazo:</th>\r\n" + 
+			"      <td>"+processo.getPrazo()+"</td>\r\n" + 
+			"      <th>Pontuacao:</th>\r\n" + 
+			"      <td>"+processo.getnPontos()+"</td>\r\n" + 
+			"    </tr>");
+	
+	html.append("</table>");
+	html.append("<br/>");
+	
+	
+	//rodapé
+	html.append("<p> Art. 2 - Esta portaria entrara em vigor na data da sua publicacao. Campo Grande (MS) 14 de Novembro de 2017 ROBERTO HASHIOKA\r\n" + 
+			"    SOLER Diretor-Presidente</p>");
 	
 	html.append("</body>");
 	html.append("</html>");

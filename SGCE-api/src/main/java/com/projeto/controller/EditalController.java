@@ -18,16 +18,20 @@ public class EditalController {
 	
 	@Autowired
 	ProcDiarioOficialRepository procRepository;
+	
+	@Autowired
+	DocumentosController documentosController;
 
 	public void gerarEdital(int tipo, int numEdital) {
 		// buscar processos
 		List<ProcDiarioOficial> dados = procRepository.findProcessosNaoGerados(tipo);
 
 		// gerar edital
-		// gerar docx
-		// gerar pdf
-		// salvar documento na base
-		// criar edital/portaria
+			// gerar docx
+		documentosController.gerarDocx(tipo, numEdital, dados);
+			// gerar pdf
+			// salvar documento na base
+			// criar edital/portaria
 
 		// atualizar edital com os ids dos docs
 		// atuallizar processos
