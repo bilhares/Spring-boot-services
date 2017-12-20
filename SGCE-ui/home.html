@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="materialize/css/materialize.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <div id="overlay"></div>
+
+
+    <ul id="dropdown1" class="dropdown-content">
+        <li>
+            <a href="#!">
+                <i class="large material-icons">view_module</i>Menu</a>
+        </li>
+        <li>
+            <a href="#!">
+                <i class="large material-icons">settings</i>Configurações</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a href="#" onclick="logout()">
+                <i class="large material-icons">power_settings_new</i>Sair</a>
+        </li>
+    </ul>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#principal" class="brand-logo logo-site">
+                <img src="img/detran.png" />
+            </a>
+
+            <ul id="nav-mobile" class="right hide-on-med-and-down user-nav">
+                <li>
+                    <a class="dropdown-button" href="#!" data-activates="dropdown1" id="username">
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </li>
+
+            </ul>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li>
+                    <a data-activates="slide-out" class="button-collapse show-on-large">
+                        <i class="material-icons">menu</i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <ul id="slide-out" class="side-nav menu-lateral">
+        <li style="text-align:center">
+            <h3>
+                <i>SGCE</i>
+            </h3>Sistema para geração e consulta de editais</li>
+
+        <li>
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <a class="collapsible-header waves-effect waves-blue darken-4">
+                        <i class="material-icons">assignment</i>Lista de processos</a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li>
+                                <a href="#listar#5">Processos de 15 Dias</a>
+                            </li>
+                            <li>
+                                <a href="#listar#27">Processos de 30 Dias</a>
+                            </li>
+                            <li>
+                                <a href="pdo.php?listarprocessos&id=43">Processos de 48 Horas</a>
+                            </li>
+                            <li>
+                                <a href="#listar#16">Processos Provido</a>
+                            </li>
+                            <li>
+                                <a href="#listar#57">Processos de penalidades</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="collapsible-header waves-effect waves-blue darken-4">
+                        <i class="material-icons">assignment</i>Lista de editais e portarias</a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li>
+                                <a href="#listar#5">Editais de 15 dias</a>
+                            </li>
+                            <li>
+                                <a href="#listar#27">Editais de 30 dias</a>
+                            </li>
+                            <li>
+                                <a href="pdo.php?editaisgerados&id=43">Editais de 48 horas</a>
+                            </li>
+                            <li>
+                                <a href="pdo.php?editaisgerados&id=16">Editais providos</a>
+                            </li>
+                            <li>
+                                <a href="#listar#57">Portarias</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="collapsible-header waves-effect waves-blue darken-4">
+                        <i class="material-icons">mode_edit</i>Informar publicação D.O</a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li>
+                                <a href="pdo.php?informeDO&id=5">Informar editais de 15 dias</a>
+                            </li>
+                            <li>
+                                <a href="pdo.php?informeDO&id=27">Informar editais de 30 dias</a>
+                            </li>
+                            <li>
+                                <a href="pdo.php?informeDO&id=43">Informar editais de 48 horas</a>
+                            </li>
+                            <li>
+                                <a href="pdo.php?informeDO&id=16">Informar editais providos</a>
+                            </li>
+                            <li>
+                                <a href="portaria.php?informeDO&id=57">Informar portarias</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+
+    </ul>
+
+    <!-- 
+    <ul>
+        <li>
+            <a href="#principal">Home</a>
+        </li>
+        <li>
+            <a href="#listar">Listar</a>
+        </li>
+        <li id="cadastrar">
+            <a href="#cadastrar">Cadastrar</a>
+        </li>
+        <li>
+            <a href="#" onclick="logout()">logout</a>
+        </li>
+        <li id="username">
+
+        </li>
+    </ul> -->
+
+    <div id="conteudo"></div>
+
+
+    <div id="modal-detalhes" class="modal">
+        <div class="modal-content" style="text-align:center">
+            <h4>Detalhes processo:</h4>
+            <ul id="ul-detalhes">
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+        </div>
+    </div>
+
+
+    <script src="js/jquery/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery/jquery.twbsPagination.min.js"></script>
+    <script src="materialize/js/materialize.js"></script>
+    <script src="js/config/config.js"></script>
+    <script src="js/controller/tokenController.js"></script>
+    <script src="js/controller/crudController.js"></script>
+    <script src="js/controller/homeController.js"></script>
+
+</body>
+
+</html>

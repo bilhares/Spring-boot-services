@@ -1,0 +1,35 @@
+.login {
+  width: 600px;
+  height: 400px;
+  border-top: 6px solid rgba(48, 120, 140, 0.99);
+}
+
+.login h2 {
+  font-size: 35px;
+  font-style: italic;
+  font-weight: bold;
+}
+.login h3 {
+  font-size: 20px;
+  font-style: italic;
+  font-weight: bold;
+}
+.container-login {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+#login_principal {
+  background: #333232;
+  font-family: "Titillium Web", sans-serif;
+}
+
+.btn,
+.btn-large {
+  background-color: rgb(56, 126, 146);
+}
